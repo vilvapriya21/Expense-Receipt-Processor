@@ -1,0 +1,43 @@
+"""Router for {{Name}} — HTTP I/O only, no business logic."""
+
+from fastapi import APIRouter, Depends
+
+from app.dependencies.{{name}} import get_{{name}}_service
+from app.schemas.{{name}} import {{Name}}Create, {{Name}}Read, {{Name}}Update
+from app.services.{{name}}_service import {{Name}}Service
+
+router = APIRouter(prefix="/api/v1/{{name_plural_kebab}}", tags=["{{name_plural}}"])
+
+
+@router.get("", response_model=list[{{Name}}Read])
+async def list_{{name_plural}}(
+    page: int = 1,
+    size: int = 20,
+    service: {{Name}}Service = Depends(get_{{name}}_service),
+) -> list[{{Name}}Read]:
+    return await service.list(page, size)
+
+
+@router.get("/{{{name}}_id}", response_model={{Name}}Read)
+async def get_{{name}}(
+    {{name}}_id: int,
+    service: {{Name}}Service = Depends(get_{{name}}_service),
+) -> {{Name}}Read:
+    return await service.get({{name}}_id)
+
+
+@router.post("", response_model={{Name}}Read, status_code=201)
+async def create_{{name}}(
+    payload: {{Name}}Create,
+    service: {{Name}}Service = Depends(get_{{name}}_service),
+) -> {{Name}}Read:
+    return await service.create(payload)
+
+
+@router.patch("/{{{name}}_id}", response_model={{Name}}Read)
+async def update_{{name}}(
+    {{name}}_id: int,
+    payload: {{Name}}Update,
+    service: {{Name}}Service = Depends(get_{{name}}_service),
+) -> {{Name}}Read:
+    return await service.update({{name}}_id, payload)

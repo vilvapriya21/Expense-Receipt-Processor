@@ -1,0 +1,18 @@
+"""Tests for the {{Name}} router."""
+
+import pytest
+from httpx import AsyncClient
+
+
+@pytest.mark.asyncio
+async def test_create_{{name}}_valid_payload_returns_201(client: AsyncClient) -> None:
+    response = await client.post("/api/v1/{{name_plural_kebab}}", json={})  # TODO: fill payload
+
+    assert response.status_code == 201
+
+
+@pytest.mark.asyncio
+async def test_get_{{name}}_missing_id_returns_404(client: AsyncClient) -> None:
+    response = await client.get("/api/v1/{{name_plural_kebab}}/999999")
+
+    assert response.status_code == 404

@@ -1,0 +1,40 @@
+"""Service for {{Name}} — business rules and orchestration."""
+
+from app.core.exceptions import NotFoundError
+from app.repositories.{{name}}_repository import {{Name}}Repository
+from app.schemas.{{name}} import {{Name}}Create, {{Name}}Read, {{Name}}Update
+
+
+class {{Name}}Service:
+    def __init__(self, repository: {{Name}}Repository) -> None:
+        self._repository = repository
+
+    async def get(self, {{name}}_id: int) -> {{Name}}Read:
+        """Fetch a {{name}} by id, raising NotFoundError if it does not exist."""
+        entity = await self._repository.get_by_id({{name}}_id)
+        if entity is None:
+            raise NotFoundError(f"{{Name}} {${{name}}_id} not found")
+        return {{Name}}Read.model_validate(entity)
+
+    async def list(self, page: int, size: int) -> list[{{Name}}Read]:
+        """Return a page of {{name_plural}}."""
+        entities = await self._repository.list_all(page, size)
+        return [{{Name}}Read.model_validate(e) for e in entities]
+
+    async def create(self, payload: {{Name}}Create) -> {{Name}}Read:
+        """Validate and create a new {{name}}."""
+        # TODO: enforce domain rules before persisting
+        from app.models.{{name}} import {{Name}}
+
+        entity = {{Name}}(**payload.model_dump())
+        created = await self._repository.add(entity)
+        return {{Name}}Read.model_validate(created)
+
+    async def update(self, {{name}}_id: int, payload: {{Name}}Update) -> {{Name}}Read:
+        """Validate and apply an update to an existing {{name}}."""
+        entity = await self._repository.get_by_id({{name}}_id)
+        if entity is None:
+            raise NotFoundError(f"{{Name}} {${{name}}_id} not found")
+        for field, value in payload.model_dump(exclude_unset=True).items():
+            setattr(entity, field, value)
+        return {{Name}}Read.model_validate(entity)

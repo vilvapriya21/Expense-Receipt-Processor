@@ -1,0 +1,21 @@
+{
+  "merchant_name": "Blue Bottle Coffee",
+  "receipt_date": "2026-10-12",
+  "subtotal": 24.50,
+  "tax_amount": 2.20,
+  "total_amount": 26.70,
+  "currency": "USD",
+  "line_items": [
+    { "description": "Latte", "quantity": 2, "unit_price": 5.50, "amount": 11.00 },
+    { "description": "Avocado Toast", "quantity": 1, "unit_price": 13.50, "amount": 13.50 }
+  ],
+  "confidence": {
+    "merchant_name": 0.97,
+    "receipt_date": 0.95,
+    "subtotal": 0.93,
+    "tax_amount": 0.90,
+    "total_amount": 0.96,
+    "currency": 0.99
+  },
+  "raw_text": "BLUE BOTTLE COFFEE\n123 Market St\n10/12/2026\n2 Latte  11.00\n1 Avocado Toast 13.50\nSubtotal 24.50\nTax 2.20\nTotal 26.70"
+}

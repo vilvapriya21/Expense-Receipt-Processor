@@ -1,0 +1,27 @@
+"""Pydantic v2 schemas for {{Name}}."""
+
+from datetime import datetime
+
+from pydantic import BaseModel, ConfigDict
+
+
+class {{Name}}Base(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+
+    # TODO: add domain fields
+
+
+class {{Name}}Create({{Name}}Base):
+    pass
+
+
+class {{Name}}Update({{Name}}Base):
+    pass
+
+
+class {{Name}}Read({{Name}}Base):
+    model_config = ConfigDict(from_attributes=True)
+
+    id: int
+    created_at: datetime
+    updated_at: datetime

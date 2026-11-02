@@ -1,0 +1,31 @@
+"""Repository for {{Name}} — persistence only, no business rules."""
+
+from sqlalchemy import select
+from sqlalchemy.ext.asyncio import AsyncSession
+
+from app.models.{{name}} import {{Name}}
+
+
+class {{Name}}Repository:
+    def __init__(self, session: AsyncSession) -> None:
+        self._session = session
+
+    async def get_by_id(self, {{name}}_id: int) -> {{Name}} | None:
+        """Return the {{name}} with the given id, or None if it does not exist."""
+        return await self._session.get({{Name}}, {{name}}_id)
+
+    async def list_all(self, page: int, size: int) -> list[{{Name}}]:
+        """Return a page of {{name_plural}} ordered by id."""
+        stmt = select({{Name}}).order_by({{Name}}.id).offset((page - 1) * size).limit(size)
+        result = await self._session.execute(stmt)
+        return list(result.scalars().all())
+
+    async def add(self, entity: {{Name}}) -> {{Name}}:
+        """Persist a new {{name}} and return it with generated fields populated."""
+        self._session.add(entity)
+        await self._session.flush()
+        return entity
+
+    async def delete(self, entity: {{Name}}) -> None:
+        """Delete the given {{name}}."""
+        await self._session.delete(entity)

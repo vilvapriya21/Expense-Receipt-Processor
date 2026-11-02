@@ -1,0 +1,24 @@
+{
+  "merchant_name": "Hotel Metropole",
+  "receipt_date": "2099-01-05",
+  "subtotal": 180.00,
+  "tax_amount": 18.00,
+  "total_amount": 198.00,
+  "currency": "EUR",
+  "line_items": [
+    { "description": "1 Night Stay", "quantity": 1, "unit_price": 180.00, "amount": 180.00 }
+  ],
+  "confidence": {
+    "merchant_name": 0.85,
+    "receipt_date": 0.40,
+    "subtotal": 0.90,
+    "tax_amount": 0.89,
+    "total_amount": 0.91,
+    "currency": 0.97
+  },
+  "raw_text": "HOTEL METROPOLE\nRue de la Paix\n05/01/2099\n1 Night Stay 180.00\nSubtotal 180.00\nTVA 18.00\nTotal 198.00",
+  "expected_validation": {
+    "needs_review": true,
+    "reason": "receipt_date is in the future relative to upload time"
+  }
+}

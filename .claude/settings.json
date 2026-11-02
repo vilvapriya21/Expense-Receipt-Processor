@@ -1,0 +1,62 @@
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Edit|Write|MultiEdit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python \"C:/Users/Priya Koma/Desktop/Claude_workshop/Expense Receipt Processor/.claude/hooks/guard_writes.py\"",
+            "timeout": 15,
+            "statusMessage": "Checking write target against protected paths..."
+          }
+        ]
+      },
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python \"C:/Users/Priya Koma/Desktop/Claude_workshop/Expense Receipt Processor/.claude/hooks/guard_bash.py\"",
+            "timeout": 15,
+            "statusMessage": "Checking command for destructive patterns..."
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write|MultiEdit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python \"C:/Users/Priya Koma/Desktop/Claude_workshop/Expense Receipt Processor/.claude/hooks/format_and_lint.py\"",
+            "timeout": 120,
+            "statusMessage": "Formatting and linting the changed file..."
+          }
+        ]
+      },
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python \"C:/Users/Priya Koma/Desktop/Claude_workshop/Expense Receipt Processor/.claude/hooks/track_test_runs.py\"",
+            "timeout": 10
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python \"C:/Users/Priya Koma/Desktop/Claude_workshop/Expense Receipt Processor/.claude/hooks/stop_test_reminder.py\"",
+            "timeout": 10
+          }
+        ]
+      }
+    ]
+  }
+}

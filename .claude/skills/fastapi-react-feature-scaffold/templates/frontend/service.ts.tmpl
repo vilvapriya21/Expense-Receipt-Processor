@@ -1,0 +1,26 @@
+import { apiClient } from "@/services/apiClient";
+import type { {{Name}}, {{Name}}CreateInput, {{Name}}UpdateInput } from "../types";
+
+const BASE_PATH = "/{{name_plural_kebab}}";
+
+export const {{name}}Service = {
+  async list(page: number, size: number): Promise<{{Name}}[]> {
+    const { data } = await apiClient.get<{{Name}}[]>(BASE_PATH, { params: { page, size } });
+    return data;
+  },
+
+  async getById(id: number): Promise<{{Name}}> {
+    const { data } = await apiClient.get<{{Name}}>(`${BASE_PATH}/${id}`);
+    return data;
+  },
+
+  async create(payload: {{Name}}CreateInput): Promise<{{Name}}> {
+    const { data } = await apiClient.post<{{Name}}>(BASE_PATH, payload);
+    return data;
+  },
+
+  async update(id: number, payload: {{Name}}UpdateInput): Promise<{{Name}}> {
+    const { data } = await apiClient.patch<{{Name}}>(`${BASE_PATH}/${id}`, payload);
+    return data;
+  },
+};

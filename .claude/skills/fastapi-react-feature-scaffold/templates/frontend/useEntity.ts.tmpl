@@ -1,0 +1,36 @@
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { {{name}}Service } from "../services/{{name}}Service";
+import type { {{Name}}CreateInput, {{Name}}UpdateInput } from "../types";
+
+const QUERY_KEY = "{{name_plural}}" as const;
+
+export function use{{Name}}List(page: number, size: number) {
+  return useQuery({
+    queryKey: [QUERY_KEY, page, size],
+    queryFn: () => {{name}}Service.list(page, size),
+  });
+}
+
+export function use{{Name}}(id: number) {
+  return useQuery({
+    queryKey: [QUERY_KEY, id],
+    queryFn: () => {{name}}Service.getById(id),
+    enabled: Number.isFinite(id),
+  });
+}
+
+export function useCreate{{Name}}() {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: (payload: {{Name}}CreateInput) => {{name}}Service.create(payload),
+    onSuccess: () => queryClient.invalidateQueries({ queryKey: [QUERY_KEY] }),
+  });
+}
+
+export function useUpdate{{Name}}(id: number) {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: (payload: {{Name}}UpdateInput) => {{name}}Service.update(id, payload),
+    onSuccess: () => queryClient.invalidateQueries({ queryKey: [QUERY_KEY] }),
+  });
+}

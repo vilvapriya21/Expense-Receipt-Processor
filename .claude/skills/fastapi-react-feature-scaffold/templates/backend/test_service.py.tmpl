@@ -1,0 +1,24 @@
+"""Tests for {{Name}}Service."""
+
+import pytest
+
+from app.schemas.{{name}} import {{Name}}Create
+from app.services.{{name}}_service import {{Name}}Service
+
+
+@pytest.mark.asyncio
+async def test_create_{{name}}_valid_payload_returns_created_entity({{name}}_repository) -> None:
+    service = {{Name}}Service({{name}}_repository)
+    payload = {{Name}}Create()  # TODO: fill required fields
+
+    result = await service.create(payload)
+
+    assert result.id is not None
+
+
+@pytest.mark.asyncio
+async def test_get_{{name}}_missing_id_raises_not_found({{name}}_repository) -> None:
+    service = {{Name}}Service({{name}}_repository)
+
+    with pytest.raises(Exception):  # TODO: replace with NotFoundError
+        await service.get(999_999)

@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "expense-data": {
+      "command": "python",
+      "args": ["./tools/expense_mcp_server.py"]
+    }
+  }
+}

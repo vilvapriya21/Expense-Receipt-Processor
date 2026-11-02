@@ -1,0 +1,21 @@
+import { use{{Name}}List } from "../hooks/use{{Name}}";
+
+export interface {{Name}}ListProps {
+  page?: number;
+  size?: number;
+}
+
+export function {{Name}}List({ page = 1, size = 20 }: {{Name}}ListProps) {
+  const { data, isLoading, isError } = use{{Name}}List(page, size);
+
+  if (isLoading) return <p>Loading {{name_plural}}...</p>;
+  if (isError) return <p role="alert">Failed to load {{name_plural}}.</p>;
+
+  return (
+    <ul aria-label="{{Name}} list">
+      {data?.map((item) => (
+        <li key={item.id}>{/* TODO: render {{name}} fields */}</li>
+      ))}
+    </ul>
+  );
+}

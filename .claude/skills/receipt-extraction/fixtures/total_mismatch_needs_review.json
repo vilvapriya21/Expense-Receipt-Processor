@@ -1,0 +1,25 @@
+{
+  "merchant_name": "Office Depot",
+  "receipt_date": "2026-10-20",
+  "subtotal": 100.00,
+  "tax_amount": 8.25,
+  "total_amount": 115.00,
+  "currency": "USD",
+  "line_items": [
+    { "description": "Printer Paper (5 reams)", "quantity": 1, "unit_price": 45.00, "amount": 45.00 },
+    { "description": "Toner Cartridge", "quantity": 1, "unit_price": 55.00, "amount": 55.00 }
+  ],
+  "confidence": {
+    "merchant_name": 0.92,
+    "receipt_date": 0.88,
+    "subtotal": 0.80,
+    "tax_amount": 0.55,
+    "total_amount": 0.60,
+    "currency": 0.99
+  },
+  "raw_text": "OFFICE DEPOT\n10/20/2026\nPaper 45.00\nToner 55.00\nSubtotal 100.00\nTax 8.25\nTotal 115.00",
+  "expected_validation": {
+    "needs_review": true,
+    "reason": "total_amount (115.00) does not equal subtotal + tax_amount (108.25) within tolerance"
+  }
+}

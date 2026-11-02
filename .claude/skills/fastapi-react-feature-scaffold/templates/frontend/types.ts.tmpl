@@ -1,0 +1,10 @@
+export interface {{Name}} {
+  id: number;
+  createdAt: string;
+  updatedAt: string;
+  // TODO: add domain fields
+}
+
+export type {{Name}}CreateInput = Omit<{{Name}}, "id" | "createdAt" | "updatedAt">;
+
+export type {{Name}}UpdateInput = Partial<{{Name}}CreateInput>;

@@ -1,0 +1,11 @@
+import { render, screen } from "@testing-library/react";
+import { describe, expect, it } from "vitest";
+import { {{Name}}List } from "./{{Name}}List";
+
+describe("{{Name}}List", () => {
+  it("renders a loading state before data resolves", () => {
+    render(<{{Name}}List />);
+
+    expect(screen.getByText(/Loading {{name_plural}}/i)).toBeInTheDocument();
+  });
+});
